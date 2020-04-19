@@ -42,10 +42,11 @@ Class ACFTOAPI{
 			$acf_fields = get_fields($post->ID);
 			if ($acf_fields){
 				foreach ($acf_fields as $field_key => $field_value){
+					$field_obj = get_field_object($field_key);
 					if($this->getNewKey())
-						$response[$this->getKeyName()][$field_key] = $field_value;
+						$response[$this->getKeyName()][$field_key] = $field_obj;
 					else
-						$response[$field_key] = $field_value;
+						$response[$field_key] = $field_obj;
 				}
 			}
 			$data->set_data( $response );
